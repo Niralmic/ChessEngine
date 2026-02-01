@@ -13,6 +13,79 @@ TODO
 using namespace std;
 using FigureTypeId = char;
 
+string AfterGameEnds(State state)
+{
+    if(state.IsCheckmateBlack())
+    {
+        cout << "White won! Enter \"new game\" to start a new game! Enter \"end\" to exit" << endl;
+        string new_game;
+        int cnt = 0;
+        while(true)
+        {
+            getline(cin, new_game);
+            if(new_game == "end") // если пользователь хочет завершить программу
+                return new_game;
+            if(new_game == "new game")
+            {
+                cout << "OK" << endl;
+                return new_game;
+            }
+            else
+            {
+                if(cnt != 0)
+                    cout << "False input! Enter \"new game\" to start a new game enter \"end\" to exit" << endl;
+            }
+            cnt++;
+        }
+    }
+    if(state.IsCheckmateWhite())
+    {
+        cout << "Black won! Enter \"new game\" to start a new game enter \"end\" to exit" << endl;
+        string new_game;
+        int cnt = 0;
+        while(true)
+        {
+            getline(cin, new_game);
+            if(new_game == "end") // если пользователь хочет завершить программу
+                return new_game;
+            if(new_game == "new game")
+            {
+                cout << "OK" << endl;
+                return new_game;
+            }
+            else
+            {
+                if(cnt != 0)
+                    cout << "False input! Enter \"new game\" to start a new game enter \"end\" to exit" << endl;
+            }
+            cnt++;
+        }
+    }
+    if(state.IsStalemateBlack() || state.IsStalemateWhite())
+    {
+        cout << "Stalemate! Draw! Enter \"new game\" to start a new game enter \"end\" to exit" << endl;
+        string new_game;
+        int cnt = 0;
+        while(true)
+        {
+            getline(cin, new_game);
+            if(new_game == "end") // если пользователь хочет завершить программу
+                return new_game;
+            if(new_game == "new game")
+            {
+                cout << "OK" << endl;
+                return new_game;
+            }
+            else
+            {
+                if(cnt != 0)
+                    cout << "False input! Enter \"new game\" to start a new game enter \"end\" to exit" << endl;
+            }
+            cnt++;
+        }
+    }
+}
+
 /*
 h2 h4
 OK
@@ -79,8 +152,18 @@ a8 b8
 b8 c6
 a6 a7
 h7 h5
+h2 h4
+a8 b8
 a7 b8
 knight
+--------
+e2 e4
+e7 e5
+f1 c4
+f8 c5
+d1 h5
+a7 a5
+h5 f7
 */
 int main()
 {
@@ -88,6 +171,7 @@ int main()
     Chess c;
     c.Init();
     FigureTypeId promote = '0'; // идентификатор превращения пешки
+    State state;
     string f, t;
     while(true)
     {
@@ -109,9 +193,10 @@ int main()
                 else
                 {
                     cout << "OK" << endl;
-                    if(promote == 'W' || promote == 'B' || promote == 'S')
+                    state = c.GetState();
+                    if(state.IsCheckmateWhite() || state.IsCheckmateBlack() || state.IsStalemateWhite() || state.IsStalemateBlack())
                     {
-                        string game_over = AfterGameEnds(promote);
+                        string game_over = AfterGameEnds(state);
                         if(game_over == "end") // если пользователь хочет завершить программу
                             break;
                         if(game_over == "new game")
@@ -129,9 +214,10 @@ int main()
                 else
                 {
                     cout << "OK" << endl;
-                    if(promote == 'W' || promote == 'B' || promote == 'S')
+                    state = c.GetState();
+                    if(state.IsCheckmateWhite() || state.IsCheckmateBlack() || state.IsStalemateWhite() || state.IsStalemateBlack())
                     {
-                        string game_over = AfterGameEnds(promote);
+                        string game_over = AfterGameEnds(state);
                         if(game_over == "end") // если пользователь хочет завершить программу
                             break;
                         if(game_over == "new game")
@@ -164,9 +250,10 @@ int main()
                     else
                     {
                         cout << "OK" << endl;
-                        if(promote == 'W' || promote == 'B' || promote == 'S')
+                        state = c.GetState();
+                        if(state.IsCheckmateWhite() || state.IsCheckmateBlack() || state.IsStalemateWhite() || state.IsStalemateBlack())
                         {
-                            string game_over = AfterGameEnds(promote);
+                            string game_over = AfterGameEnds(state);
                             if(game_over == "end") // если пользователь хочет завершить программу
                                 break;
                             if(game_over == "new game")
@@ -182,9 +269,10 @@ int main()
                     else
                     {
                         cout << "OK" << endl;
-                        if(promote == 'W' || promote == 'B' || promote == 'S')
+                        state = c.GetState();
+                        if(state.IsCheckmateWhite() || state.IsCheckmateBlack() || state.IsStalemateWhite() || state.IsStalemateBlack())
                         {
-                            string game_over = AfterGameEnds(promote);
+                            string game_over = AfterGameEnds(state);
                             if(game_over == "end") // если пользователь хочет завершить программу
                                 break;
                             if(game_over == "new game")
@@ -203,9 +291,10 @@ int main()
                 else
                 {
                     cout << "OK" << endl;
-                    if(promote == 'W' || promote == 'B' || promote == 'S')
+                    state = c.GetState();
+                    if(state.IsCheckmateWhite() || state.IsCheckmateBlack() || state.IsStalemateWhite() || state.IsStalemateBlack())
                     {
-                        string game_over = AfterGameEnds(promote);
+                        string game_over = AfterGameEnds(state);
                         if(game_over == "end") // если пользователь хочет завершить программу
                             break;
                         if(game_over == "new game")

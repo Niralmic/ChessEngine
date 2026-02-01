@@ -1,5 +1,7 @@
 #pragma once
 #include<string>
+#include <cstdint>
+
 
 using namespace std;
 using FigureTypeId = char;
@@ -10,23 +12,28 @@ enum Color
     Black = 2
 };
 
-/*enum Figura
-{
-    nothing = 0,
-    pawn = 1,
-    knight = 2,
-    bishop = 3,
-    rook = 4,
-    queen = 5,
-    king = 6,
-};*/
-
 struct Cord
 {
     int r; // строка
     int c; // столбец
     Cord(int row, int col) : r(row), c(col) {}
     Cord() : r(0), c(0) {}
+};
+
+enum StateWhite : uint8_t
+{
+    checkWhite      = 1 << 0,
+    checkmateWhite  = 1 << 1,
+    stalemateWhite  = 1 << 2,
+    castlingMadeWhite   = 1 << 3,
+};
+
+enum StateBlack : uint8_t
+{
+    checkBlack      = 1 << 0,
+    checkmateBlack  = 1 << 1,
+    stalemateBlack  = 1 << 2,
+    castlingMadeBlack = 1 << 3,
 };
 
 inline Cord FieldToCord(const string &pos) // превращает координату шахматного поля в числовую координату типа Cord
@@ -46,7 +53,7 @@ FigureTypeId StringToChar(string fig)
     else return '0';
 }
 
-string AfterGameEnds(FigureTypeId& promote)
+/*string AfterGameEnds(FigureTypeId& promote)
 {
     if(promote == 'W')
     {
@@ -120,5 +127,5 @@ string AfterGameEnds(FigureTypeId& promote)
             cnt++;
         }
     }
-}
+}*/
 

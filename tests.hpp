@@ -19,7 +19,7 @@ void TestStaleMate()
     MMove m(from, to, move(nptr));
     FigureTypeId promote = '0';
     test.CMove(move(m), promote);
-    assert(promote == 'S');
+    assert(test.GetState().IsStalemateBlack());
 }
 
 void TestCheckMate()
@@ -36,7 +36,7 @@ void TestCheckMate()
     MMove m1(from1, to1, move(nptr1));
     FigureTypeId promote1 = '0';
     test1.CMove(move(m1), promote1);
-    assert(promote1 == 'W');
+    assert(test1.GetState().IsCheckmateBlack());
 
     Chess test2;
     test2.SetFigureOnBoard('K', Cord(7, 4), Black);
@@ -50,7 +50,7 @@ void TestCheckMate()
     MMove m2(from2, to2, move(nptr2));
     FigureTypeId promote2 = '0';
     test2.CMove(move(m2), promote2);
-    assert(promote2 == 'B');
+    assert(test2.GetState().IsCheckmateWhite());
 }
 
 void TestCheckMateByLongCastling()
@@ -67,7 +67,7 @@ void TestCheckMateByLongCastling()
     MMove m1(from1, to1, move(nptr1));
     FigureTypeId promote1 = '0';
     assert(test1.CMove(move(m1), promote1));
-    assert(promote1 == 'W');
+    assert(test1.GetState().IsCheckmateBlack());
 
     Chess test2;
     test2.SetFigureOnBoard('K', Cord(0, 4), Black);
@@ -81,7 +81,7 @@ void TestCheckMateByLongCastling()
     MMove m2(from2, to2, move(nptr2));
     FigureTypeId promote2 = '0';
     assert(test2.CMove(move(m2), promote2));
-    assert(promote2 == 'B');
+    assert(test2.GetState().IsCheckmateWhite());
 }
 
 void TestCheckMateByShortCastling()
@@ -98,7 +98,7 @@ void TestCheckMateByShortCastling()
     MMove m1(from1, to1, move(nptr1));
     FigureTypeId promote1 = '0';
     assert(test1.CMove(move(m1), promote1));
-    assert(promote1 == 'W');
+    assert(test1.GetState().IsCheckmateBlack());
 
     Chess test2;
     test2.SetFigureOnBoard('K', Cord(0, 4), Black);
@@ -112,7 +112,7 @@ void TestCheckMateByShortCastling()
     MMove m2(from2, to2, move(nptr2));
     FigureTypeId promote2 = '0';
     assert(test2.CMove(move(m2), promote2));
-    assert(promote2 == 'B');
+    assert(test2.GetState().IsCheckmateWhite());
 }
 
 void TestEnPassantWhite()

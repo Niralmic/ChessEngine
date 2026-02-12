@@ -152,13 +152,11 @@ class Chess // класс игры в шахматы
         {
             if(IsMate(Black, promote)) // если мат черным
             {
-                promote = 'W';
                 _state.CheckmateBlack();
                 return false;
             }
             if(IsMate(White, promote)) // если мат белым
             {
-                promote = 'B';
                 _state.CheckmateWhite();
                 return false;
             }
@@ -166,7 +164,6 @@ class Chess // класс игры в шахматы
             {
                 if(IsStaleMate(White, promote)) // если пат белым
                 {
-                    promote = 'S';
                     _state.StalemateWhite();
                     return false;
                 }
@@ -175,7 +172,6 @@ class Chess // класс игры в шахматы
             {
                 if(IsStaleMate(Black, promote)) // если пат черным
                 {
-                    promote = 'S';
                     _state.StalemateBlack();
                     return false;
                 }
@@ -199,13 +195,11 @@ class Chess // класс игры в шахматы
                         brd.Move(move(m), move(nptr)); // Short Castling White
                         if(IsMate(Black, promote))
                         {
-                            promote = 'W';
                             _state.CheckmateBlack();
                             return true;
                         }
                         if(IsStaleMate(Black, promote))
                         {
-                            promote = 'S';
                             _state.StalemateBlack();
                             return true;
                         }
@@ -227,13 +221,11 @@ class Chess // класс игры в шахматы
                     brd.Move(move(scb), move(nptr));
                     if(IsMate(White, promote))
                     {
-                        promote = 'B';
                         _state.CheckmateWhite();
                         return true;
                     }
                     if(IsStaleMate(White, promote))
                     {
-                        promote = 'S';
                         _state.StalemateWhite();
                         return true;
                     }
@@ -259,13 +251,11 @@ class Chess // класс игры в шахматы
                         brd.Move(move(m), move(nptr)); // Long Castling White
                         if(IsMate(Black, promote))
                         {
-                            promote = 'W';
                             _state.CheckmateBlack();
                             return true;
                         }
                         if(IsStaleMate(Black, promote))
                         {
-                            promote = 'S';
                             _state.StalemateBlack();
                             return true;
                         }
@@ -287,13 +277,11 @@ class Chess // класс игры в шахматы
                     brd.Move(move(lcb), move(nptr));
                     if(IsMate(White, promote))
                     {
-                        promote = 'B';
                         _state.CheckmateWhite();
                         return true;
                     }
                     if(IsStaleMate(White, promote))
                     {
-                        promote = 'S';
                         _state.StalemateWhite();
                         return true;
                     }
@@ -328,13 +316,11 @@ class Chess // класс игры в шахматы
                     {
                         if(IsMate(Black, promote)) // если мат черным
                         {
-                            promote = 'W';
                             _state.CheckmateBlack();
                             return true;
                         }
                         if(IsStaleMate(Black, promote)) // если пат черным
                         {
-                            promote = 'S';
                             _state.StalemateBlack();
                             return true;
                         }
@@ -343,13 +329,11 @@ class Chess // класс игры в шахматы
                     }
                     if(IsMate(White, promote)) // если мат белым
                     {
-                        promote = 'B';
                         _state.CheckmateWhite();
                         return true;
                     }
                     if(IsStaleMate(White, promote)) // если пат белым
                     {
-                        promote = 'S';
                         _state.StalemateWhite();
                         return true;
                     }
